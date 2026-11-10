@@ -1,32 +1,19 @@
-import { useState } from "react";
-import { type Article } from "../types/article";
-import SearchForm from "./SearchForm";
-import ArticleList from "./ArticleList";
-import { fetchArticles } from "../services/articleService";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function App() {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const handleSearch = async (topic: string) => {
-    try {
-      setIsLoading(true);
-      setIsError(false);
-      const data = await fetchArticles(topic);
-      setArticles(data);
-    } catch {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const [person, setPerson] = useState(null);
+
+  useEffect(() => {
+    console.log("Effect ran!");
+    axios.get("https://swapi.info/api/people/1").then((response) => setPerson(response.data));
+  }, []);
+
+  console.log("App rendred!");
 
   return (
     <>
-      <SearchForm onSubmit={handleSearch} />
-      {isLoading && <p>Loading data, please wait...</p>}
-      {isError && <p>Whoops, something went wrong! Please try again!</p>}
-      {articles.length > 0 && <ArticleList items={articles} />}
+      <pre>{JSON.stringify(person, null, 2)}</pre>
     </>
   );
 }
