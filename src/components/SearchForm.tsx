@@ -6,15 +6,11 @@ export default function SearchForm({ onSubmit }: SearchFormProps) {
   const handleSubmit = (formData: FormData) => {
     const topic = formData.get("topic") as string;
 
-    // Якщо текстове поле порожнє, виводимо повідомлення
-    // і припиняємо виконання функції.
     if (topic === "") {
       alert("Please enter search topic!");
       return;
     }
 
-    // У протилежному випадку викликаємо пропс
-    // і передаємо йому значення поля
     onSubmit(topic);
   };
 
