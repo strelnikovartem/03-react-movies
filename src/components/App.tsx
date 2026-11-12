@@ -1,11 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Modal from "./Modal";
 
 export default function App() {
-  const [clicks, setClicks] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    console.log("You can see me only once!");
-  }, []);
+  const openModal = () => setIsModalOpen(true);
 
-  return <button onClick={() => setClicks(clicks + 1)}>You clicked {clicks} times</button>;
+  const closeModal = () => setIsModalOpen(false);
+
+  return (
+    <div>
+      <h1>Main content of the page</h1>
+      <button onClick={openModal}>Open modal</button>
+      {isModalOpen && (
+        <Modal onClose={closeModal}>
+          <h2>Custom Modal Content</h2>
+          <p>This is a reusable modal with dynamic content.</p>
+        </Modal>
+      )}
+    </div>
+  );
 }
