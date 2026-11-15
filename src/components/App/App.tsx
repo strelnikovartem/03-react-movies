@@ -1,11 +1,13 @@
 import SearchBar from '../SearchBar/SearchBar';
 
 export default function App() {
-  const handleSearah = () => {};
+  const handleSearch = (query: String) => {
+    console.log('handleSearch', query);
+  };
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
     </div>
   );
 }
