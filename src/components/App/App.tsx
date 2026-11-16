@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import SearchBar from '../SearchBar/SearchBar';
 
 export default function App() {
@@ -8,6 +9,8 @@ export default function App() {
   return (
     <div>
       <SearchBar onSearch={handleSearch} />
+
+      <Toaster />
     </div>
   );
 }
