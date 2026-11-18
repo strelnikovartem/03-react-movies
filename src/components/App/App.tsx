@@ -40,7 +40,7 @@ export default function App() {
 
   return (
     <div>
-      <SearchBar onSearch={searchMovies} />
+      <SearchBar onSubmit={searchMovies} />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {selectedMovie && (
