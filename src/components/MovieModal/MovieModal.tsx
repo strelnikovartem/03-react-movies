@@ -15,15 +15,31 @@ export default function MovieModal({ movie, onClose }: MovieModalProps) {
     }
   }
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
+  // useEffect(() => {
+  //   document.addEventListener('keydown', handleKeyDown);
+  //   document.body.style.overflow = 'hidden';
 
+  //   function handleKeyDown(event: KeyboardEvent) {
+  //     if (event.key === 'Escape') {
+  //       onClose();
+  //     }
+  //   }
+
+  //   return () => {
+  //     document.removeEventListener('keydown', handleKeyDown);
+  //     document.body.style.overflow = '';
+  //   };
+  // }, [onClose]);
+
+  useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         onClose();
       }
     }
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
